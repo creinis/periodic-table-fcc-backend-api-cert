@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela Periódica</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header>
+        <h1>Periodic Table of Elements</h1>
+    </header>
+    <main>
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search element by name or symbol...">
+            <button type="button" onclick="searchElement()">Search</button>
+        </div>
+            <div id="table-container" class="periodic-table">
+                
+            </div>
+            <div id="element-details" class="element-details">
+                
+            </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            generatePeriodicTable();
+        });
+
+        const elementPositions = {
+            1: '1 / 1', // H
+            2: '1 / 18', // He
+            3: '2 / 1', // Li
+            4: '2 / 2', // Be
+            5: '2 / 13', // B
+            6: '2 / 14', // C
+            7: '2 / 15', // N
+            8: '2 / 16', // O
+            9: '2 / 17', // F
+            10: '2 / 18', // Ne
+            11: '3 / 1', // Na
+            12: '3 / 2', // Mg
+            13: '3 / 13', // Al
+            14: '3 / 14', // Si
+            15: '3 / 15', // P
+            16: '3 / 16', // S
+            17: '3 / 17', // Cl
+            18: '3 / 18', // Ar
+            19: '4 / 1', // K
+            20: '4 / 2', // Ca
+            21: '4 / 3', // Sc
+            22: '4 / 4', // Ti
+            23: '4 / 5', // V
+            24: '4 / 6', // Cr
+            25: '4 / 7', // Mn
+            26: '4 / 8', // Fe
+            27: '4 / 9', // Co
+            28: '4 / 10', // Ni
+            29: '4 / 11', // Cu
+            30: '4 / 12', // Zn
+            31: '4 / 13', // Ga
+            32: '4 / 14', // Ge
+            33: '4 / 15', // As
+            34: '4 / 16', // Se
+            35: '4 / 17', // Br
+            36: '4 / 18', // Kr
+            37: '5 / 1', // Rb
+            38: '5 / 2', // Sr
+            39: '5 / 3', // Y
+            40: '5 / 4', // Zr
+            41: '5 / 5', // Nb
+            42: '5 / 6', // Mo
+            43: '5 / 7', // Tc
+            44: '5 / 8', // Ru
+            45: '5 / 9', // Rh
+            46: '5 / 10', // Pd
+            47: '5 / 11', // Ag
+            48: '5 / 12', // Cd
+            49: '5 / 13', // In
+            50: '5 / 14', // Sn
+            51: '5 / 15', // Sb
+            52: '5 / 16', // Te
+            53: '5 / 17', // I
+            54: '5 / 18', // Xe
+            55: '6 / 1', // Cs
+            56: '6 / 2', // Ba
+            57: '9 / 4', // La
+            58: '9 / 5', // Ce
+            59: '9 / 6', // Pr
+            60: '9 / 7', // Nd
+            61: '9 / 8', // Pm
+            62: '9 / 9', // Sm
+            63: '9 / 10', // Eu
+            64: '9 / 11', // Gd
+            65: '9 / 12', // Tb
+            66: '9 / 13', // Dy
+            67: '9 / 14', // Ho
+            68: '9 / 15', // Er
+            69: '9 / 16', // Tm
+            70: '9 / 17', // Yb
+            71: '9 / 18', // Lu
+            72: '6 / 4', // Hf
+            73: '6 / 5', // Ta
+            74: '6 / 6', // W
+            75: '6 / 7', // Re
+            76: '6 / 8', // Os
+            77: '6 / 9', // Ir
+            78: '6 / 10', // Pt
+            79: '6 / 11', // Au
+            80: '6 / 12', // Hg
+            81: '6 / 13', // Tl
+            82: '6 / 14', // Pb
+            83: '6 / 15', // Bi
+            84: '6 / 16', // Po
+            85: '6 / 17', // At
+            86: '6 / 18', // Rn
+            87: '7 / 1', // Fr
+            88: '7 / 2', // Ra
+            89: '10 / 4', // Ac
+            90: '10 / 5', // Th
+            91: '10 / 6', // Pa
+            92: '10 / 7', // U
+            93: '10 / 8', // Np
+            94: '10 / 9', // Pu
+            95: '10 / 10', // Am
+            96: '10 / 11', // Cm
+            97: '10 / 12', // Bk
+            98: '10 / 13', // Cf
+            99: '10 / 14', // Es
+            100: '10 / 15', // Fm
+            101: '10 / 16', // Md
+            102: '10 / 17', // No
+            103: '10 / 18', // Lr
+            104: '7 / 4', // Rf
+            105: '7 / 5', // Db
+            106: '7 / 6', // Sg
+            107: '7 / 7', // Bh
+            108: '7 / 8', // Hs
+            109: '7 / 9', // Mt
+            110: '7 / 10', // Ds
+            111: '7 / 11', // Rg
+            112: '7 / 12', // Cn
+            113: '7 / 13', // Nh
+            114: '7 / 14', // Fl
+            115: '7 / 15', // Mc
+            116: '7 / 16', // Lv
+            117: '7 / 17', // Ts
+            118: '7 / 18', // Og
+        };
+
+        async function generatePeriodicTable() {
+            const response = await fetch('/api/elements');
+
+            if (!response.ok) {
+              console.error('Network response was not ok');
+              return;
+            }
+            
+            const contentType = response.headers.get('content-type');
+            
+            if (!contentType || !contentType.includes('application/json')) {
+              console.error('Response is not a valid JSON');
+              return;
+            }
+            
+            const elements = await response.json();
+          
+            const tableContainer = document.getElementById('table-container');
+            tableContainer.innerHTML = '';
+          
+            elements.forEach(element => {
+              const elementDiv = document.createElement('div');
+              elementDiv.classList.add('element');
+              elementDiv.setAttribute('data-atomic-number', element.atomic_number);
+              elementDiv.setAttribute('data-type-id', element.type_id);
+              elementDiv.style.gridArea = elementPositions[element.atomic_number];
+              elementDiv.innerHTML = `
+                <div class="symbol">${element.symbol}</div>
+                <div class="number">${element.atomic_number}</div>
+                <div class="name">${element.name}</div>
+              `;
+              elementDiv.addEventListener('click', () => showElementDetails(element));
+              tableContainer.appendChild(elementDiv);
+            });
+          }
+          
+          async function searchElement() {
+            const query = document.getElementById('search').value.trim().toLowerCase();
+            const response = await fetch(`/api/elements`);
+            const elements = await response.json();
+          
+            const filteredElements = elements.filter(element =>
+              element.name.toLowerCase().includes(query) || element.symbol.toLowerCase().includes(query)
+            );
+          
+            const tableContainer = document.getElementById('table-container');
+            tableContainer.innerHTML = '';
+          
+            filteredElements.forEach(element => {
+              const elementDiv = document.createElement('div');
+              elementDiv.classList.add('element');
+              elementDiv.style.gridArea = elementPositions[element.atomic_number];
+              elementDiv.innerHTML = `
+                <div class="symbol">${element.symbol}</div>
+                <div class="number">${element.atomic_number}</div>
+                <div class="name">${element.name}</div>
+              `;
+              elementDiv.addEventListener('click', () => showElementDetails(element));
+              tableContainer.appendChild(elementDiv);
+            });
+          }
+          
+          function showElementDetails(element) {
+            const detailsContainer = document.getElementById('element-details');
+            detailsContainer.innerHTML = `
+              <h2>${element.name} (${element.symbol})</h2>
+              <p>Atomic Number: ${element.atomic_number}</p>
+              <p>Type ID: ${element.type_id}</p>
+              <p>Atomic Mass: ${element.atomic_mass}</p>
+              <p>Melting Point: ${element.melting_point_celsius} °C</p>
+              <p>Boiling Point: ${element.boiling_point_celsius} °C</p>
+            `;
+          }
+          
+    </script>
+    <footer>
+        <hr/>
+            <p>
+                Improved by <a href="https://github.com/creinis">Carlos Reinis</a>
+            </p>
+    </footer>
+</body>
+</html>

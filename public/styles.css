@@ -1,0 +1,156 @@
+body {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 8px;
+    background-color: whitesmoke;
+    color: rgb(42, 40, 40);
+    width: 100%;
+}
+
+.main-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 10px 0;
+}
+
+#search {
+    width: 35%;
+    padding: 8px;
+    font-size: 14px;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+/* Estilos para a tabela periódica */
+.periodic-table {
+    display: grid;
+    grid-template-columns: repeat(18, 3.5vw);
+    grid-template-rows: repeat(10, 3.5vw);
+    gap: 1px;
+    margin: 20px auto;
+    width: 65vw;
+}
+
+.element {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #000;
+    padding: 0.6vw;
+    text-align: center;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.element:hover {
+    opacity: 0.6;
+}
+
+/* Estilos para os detalhes do elemento */
+.element-details {
+    margin-top: 12px;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para as informações do elemento */
+.atomic-number {
+    font-size: 0.4vw;
+    font-weight: bold;
+}
+
+.symbol {
+    font-size: 1.3vw;
+    font-weight: bold;
+}
+
+.name {
+    font-size: 0.4vw;
+    font-weight: normal;
+}
+
+.atomic-weight {
+    font-size: 0.3vw;
+    font-weight: normal;
+}
+
+/* Estilos para os tipos de elementos */
+.element[data-type-id="1"],
+.element[data-type-id="11"] {
+    background-color: #faa7a7;
+}
+
+.element[data-type-id="2"] {
+    background-color: #e6a749;
+}
+
+.element[data-type-id="3"] {
+    background-color: #efc56f;
+}
+
+.element[data-type-id="4"] {
+    background-color: #aaff00;
+}
+
+.element[data-type-id="5"],
+.element[data-type-id="13"] {
+    background-color: #68d8b2;
+}
+
+.element[data-type-id="6"] {
+    background-color: #47bbf6;
+}
+
+.element[data-type-id="7"] {
+    background-color: #6363d8;
+}
+
+.element[data-type-id="8"] {
+    background-color: #c25bf6;
+}
+
+.element[data-type-id="9"] {
+    background-color: #f262c2;
+}
+
+.element[data-type-id="10"] {
+    background-color: #e77171;
+}
+
+.element[data-type-id="12"] {
+    background-color: #7eca7e;
+}
+
+footer {
+    text-align: center;
+    font-size: 10px;
+    font-weight: 300;
+    line-height: 1;
+    padding-bottom: 40px;
+}
