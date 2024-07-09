@@ -150,19 +150,6 @@
 
         async function generatePeriodicTable() {
             const response = await fetch('/api/elements');
-
-            if (!response.ok) {
-              console.error('Network response was not ok');
-              return;
-            }
-            
-            const contentType = response.headers.get('content-type');
-            
-            if (!contentType || !contentType.includes('application/json')) {
-              console.error('Response is not a valid JSON');
-              return;
-            }
-            
             const elements = await response.json();
           
             const tableContainer = document.getElementById('table-container');
@@ -175,8 +162,8 @@
               elementDiv.setAttribute('data-type-id', element.type_id);
               elementDiv.style.gridArea = elementPositions[element.atomic_number];
               elementDiv.innerHTML = `
+                <div class="atomic-number">${element.atomic_number}</div>
                 <div class="symbol">${element.symbol}</div>
-                <div class="number">${element.atomic_number}</div>
                 <div class="name">${element.name}</div>
               `;
               elementDiv.addEventListener('click', () => showElementDetails(element));
@@ -199,6 +186,8 @@
             filteredElements.forEach(element => {
               const elementDiv = document.createElement('div');
               elementDiv.classList.add('element');
+              elementDiv.setAttribute('data-atomic-number', element.atomic_number);
+              elementDiv.setAttribute('data-type-id', element.type_id); // Adiciona o atributo data-type-id
               elementDiv.style.gridArea = elementPositions[element.atomic_number];
               elementDiv.innerHTML = `
                 <div class="symbol">${element.symbol}</div>
@@ -212,13 +201,17 @@
           
           function showElementDetails(element) {
             const detailsContainer = document.getElementById('element-details');
+            detailsContainer.setAttribute('data-type-id', element.type_id);
+            detailsContainer.style.border = '1px solid #2e2d2d';
             detailsContainer.innerHTML = `
-              <h2>${element.name} (${element.symbol})</h2>
-              <p>Atomic Number: ${element.atomic_number}</p>
-              <p>Type ID: ${element.type_id}</p>
-              <p>Atomic Mass: ${element.atomic_mass}</p>
-              <p>Melting Point: ${element.melting_point_celsius} °C</p>
-              <p>Boiling Point: ${element.boiling_point_celsius} °C</p>
+              <div class="atomic-number">${element.atomic_number}</div>
+              <p class="label">Atomic Number</p>
+              <div class="symbol">${element.symbol}</div>
+              <p class="name">${element.name}</p>
+              <div class="property">Type: ${element.type}</div>
+              <div class="property">Atomic Mass: ${element.atomic_mass}</div>
+              <div class="property">Melting Point: ${element.melting_point_celsius} °C</div>
+              <div class="property">Boiling Point: ${element.boiling_point_celsius} °C</div>
             `;
           }
           
