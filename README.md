@@ -6,6 +6,8 @@
 <img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/postgresql-colored.svg" width="75" height="75" alt="PostgreSQL" style="margin: 10px 15px 0 15px;" />
 <img src="https://img.icons8.com/color/75/000000/javascript.png" width="75" height="75" alt="JavaScript" style="margin: 10px 15px 0 15px;" />
 <img src="https://img.icons8.com/color/75/000000/mongodb.png" width="75" height="75" alt="MongoDB" style="margin: 10px 15px 0 15px;" />
+<img src="https://img.icons8.com/color/75/000000/html-5.png" width="75" height="75" alt="HTML" style="margin: 10px 15px 0 15px;" />
+<img src="https://img.icons8.com/color/75/000000/css3.png" width="75" height="75" alt="CSS" style="margin: 10px 15px 0 15px;" />
 </p>
 
 - **Bash:** Utilizado para escrever scripts de shell que facilitam a configuração, manutenção e consulta do banco de dados.
