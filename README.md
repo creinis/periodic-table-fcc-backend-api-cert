@@ -15,6 +15,11 @@
 - **JavaScript:** Utilizado no frontend para interatividade e manipulação dinâmica dos elementos da tabela periódica.
 - **MongoDB/Mongoose:** Utilizados para o backend, armazenando e gerenciando dados sobre os elementos químicos de forma não relacional.
 
+### Try it!
+
+frontend link:
+https://periodic-table-6axapdcm2-carlos-projects-e3485227.vercel.app/
+
 ### Functionality
 
 This project showcases a relational and non-relational database designed to store comprehensive information about chemical elements found in the periodic table. It includes scripts for setting up the database schema, seeding initial data, and querying information effectively. Additionally, it provides a web interface for users to interact with the data visually.
